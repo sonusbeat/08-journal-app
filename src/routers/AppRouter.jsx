@@ -11,12 +11,14 @@ import JournalScreen from "../components/journal/JournalScreen";
 const AppRouter = () => {
   return (
     <Router>
-      <div>
-        <Switch>
-          <Route path="/auth" component={ AuthRouter } />
-          <Route exact path="/" component={ JournalScreen } />
-          <Redirect to="/auth/login" />
-        </Switch>
+      <div className="auth__main">
+        <div className="auth__box-container">
+          <Switch>
+            <Route path="/auth" component={ AuthRouter } />
+            <Route exact path="/" component={ JournalScreen } />
+            <Redirect to="/auth/login" />
+          </Switch>
+        </div>
       </div>
     </Router>
   );
