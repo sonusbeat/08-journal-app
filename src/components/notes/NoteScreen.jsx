@@ -14,7 +14,7 @@ const NoteScreen = () => {
             placeholder="Some awesome title"
             type="text"
             name="title"
-            autocomplete="off"
+            autoComplete="off"
           />
 
           <textarea
