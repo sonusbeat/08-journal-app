@@ -1,4 +1,4 @@
-// import something from "something";
+import JournalEntries from './JournalEntries';
 
 const Sidebar = () => {
   return (
@@ -18,6 +18,8 @@ const Sidebar = () => {
         <i className="far fa-calendar-plus fa-5x mb-2"></i>
         <p>New Entry</p>
       </div>
+
+      <JournalEntries />
     </aside>
   );
 }

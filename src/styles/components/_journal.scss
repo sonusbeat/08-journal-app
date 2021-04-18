@@ -1,29 +1,20 @@
 .journal {
   display: grid;
   grid-template-columns: 450px 1fr;
-  grid-column-gap: 20px;
+  grid-template-rows: 1fr;
   min-height: 100vh;
 
   &__main-content {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
     color: $dark-grey;
     padding: 20px;
   }
 
   &__sidebar {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-
-    display: grid;
-    grid-template-rows: 50px 1fr;
-    justify-items: center;
-    align-items: center;
-    grid-row-gap: 20px;
     padding: 20px;
 
     background-color: $dark-grey;
     color: $white;
+    overflow: hidden;
 
     &-navbar {
       width: 100%;
@@ -31,6 +22,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 30px;
     }
 
     &-title {
@@ -39,10 +31,15 @@
     }
 
     &-new-entry {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
       width: 100%;
+
+
       color: $white;
-      justify-self: start;
-      align-self: start;
       cursor: pointer;
 
       transition: color 300ms ease-in-out;
@@ -50,6 +47,58 @@
       &:hover {
         color: darken($white, 20)
       }
+    }
+
+    // &-entries {}
+
+    &-entry {
+      background-color: $white;
+      border-radius: 4px;
+      color: $dark-grey;
+      display: grid;
+      grid-template-columns: 80px 1fr 75px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    &-picture {
+      max-width: 100px;
+      min-height: 75px;
+      background-size: cover;
+      background-image: url("../../images/beach.jpg");
+      background-position: bottom left;
+    }
+
+    &-body {
+      padding: 10px;
+      border-right: 1px solid #ddd;
+    }
+
+    &-entry-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    &-entry-content {
+      font-size: 12px;
+    }
+
+    &-entry-date-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      font-size: 12px;
+    }
+
+    &-entry-date-day {
+      font-size: 12px;
+    }
+
+    &-entry-date-number {
+      font-weight: bold;
     }
 
   }
