@@ -1,4 +1,5 @@
-import AppRouter from "./routers/AppRouter"
+import AppRouter from "./routers/AppRouter";
+import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 
 const JournalApp = () => {
   return (
