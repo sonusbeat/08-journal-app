@@ -28,6 +28,7 @@ const RegisterScreen = () => {
           type="password"
           placeholder="password"
           name="password"
+          autoComplete="off"
         />
 
         <input
@@ -35,6 +36,7 @@ const RegisterScreen = () => {
           type="password"
           placeholder="Confirm password"
           name="password_confirm"
+          autoComplete="off"
         />
 
         <button

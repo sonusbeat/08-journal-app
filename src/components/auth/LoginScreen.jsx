@@ -20,6 +20,7 @@ const LoginScreen = () => {
           type="password"
           placeholder="password"
           name="password"
+          autoComplete="off"
         />
 
         <button
