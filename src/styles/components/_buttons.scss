@@ -6,12 +6,17 @@
   font-size: 12px;
   padding: 7px 10px;
 
+  &:hover {
+    color: darken($dark-grey, 10);
+  }
+
   &-primary {
     background: $primary;
     color: $white;
     border-radius: 2px;
 
-    transition: background-color 300ms ease-in-out;
+    transition: background-color 300ms ease-in-out,
+                color 300ms ease-in-out;
 
     &:disabled {
       background-color: lighten($primary, 15);
@@ -23,6 +28,7 @@
 
     &:hover {
       background-color: darken($primary, 20);
+      color: darken($white, 10);
     }
   }
 
