@@ -1,0 +1,25 @@
+.notes {
+  &__main-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__app-bar {
+    display: flex;
+    background-color: $primary;
+    align-items: center;
+    justify-content: space-between;
+    color: $white;
+    padding: 10px 20px;
+
+    .btn {
+      color: $white;
+      transition: color 300ms ease-in-out;
+
+      &:hover {
+        color: darken($white, 10);
+      }
+    }
+  }
+}
