@@ -1,42 +1,70 @@
 import { Link } from "react-router-dom";
+import useForm from '../../hooks/useForm';
 
 const RegisterScreen = () => {
+  const [ formValues, handleInputChange ] = useForm({
+    name: "Daniel",
+    email: "sonusbeat@gmail.com",
+    password: "0123456789",
+    password_confirmation: "0123456789",
+  });
+
+  const { name, email, password, password_confirmation } = formValues;
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    console.log("Name:", name);
+    console.log("Email:", email);
+    console.log("Password:", password);
+    console.log("Password Confirmation:", password_confirmation);
+
+  };
+
   return (
     <>
       <h3 className="auth__title">Register</h3>
 
-      <form>
+      <form onSubmit={ handleRegister }>
 
         <input
+          name="name"
+          value={ name }
           className="auth__input"
           type="text"
           placeholder="name"
-          name="name"
           autoComplete="off"
+          onChange={ handleInputChange }
         />
 
         <input
+          name="email"
+          value={ email }
           className="auth__input"
           type="text"
           placeholder="email"
-          name="email"
           autoComplete="off"
+          onChange={ handleInputChange }
         />
 
         <input
-          className="auth__input"
           type="password"
+          value={ password }
+          className="auth__input"
           placeholder="password"
           name="password"
           autoComplete="off"
+          onChange={ handleInputChange }
         />
 
         <input
+          name="password_confirmation"
+          value={ password_confirmation }
           className="auth__input"
           type="password"
           placeholder="Confirm password"
-          name="password_confirm"
           autoComplete="off"
+          onChange={ handleInputChange }
         />
 
         <button
