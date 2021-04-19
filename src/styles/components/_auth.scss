@@ -54,8 +54,9 @@
     width: 100%;
   }
 
-  .auth__alert-error {
+  &__alert-error {
     background-color: crimson;
+    padding: 10px;
     border-radius: 5px;
     color: $white;
     display: flex;

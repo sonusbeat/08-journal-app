@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import validator from "validator";
 import useForm from '../../hooks/useForm';
 
 const RegisterScreen = () => {
@@ -11,18 +12,50 @@ const RegisterScreen = () => {
 
   const { name, email, password, password_confirmation } = formValues;
 
+  const isFormValid = () => {
+    if ( name.trim().length <= 2) {
+      console.error(`Name should be greater than 2 characters !`);
+      return false;
+    } else if ( validator.isEmpty( email ) ) {
+      console.error(`Email should be present !`);
+      return false;
+    } else  if ( !validator.isEmail( email ) ) {
+      console.error(`Email format not valid !`);
+      return false;
+    } else  if ( validator.isEmpty( password ) ) {
+      console.error(`Password should be present !`);
+      return false;
+    } else  if ( password.trim().length < 8 ) {
+      console.error(`Password should be greater than 8 characters !`);
+      return false;
+    } else  if ( validator.isEmpty( password_confirmation ) ) {
+      console.error(`Password confirmation should be present !`);
+      return false;
+    } else  if ( password_confirmation.trim().length < 8 ) {
+      console.error(`Password confirmation should be greater than 8 characters !`);
+      return false;
+    } else  if ( password !== password_confirmation ) {
+      console.error(`Password and Password confirmation should be match each other !`);
+      return false;
+    }
+
+    return true;
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
 
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("Password Confirmation:", password_confirmation);
-
+    if ( isFormValid() ) {
+      console.log("Se envia el formulario");
+    }
   };
 
   return (
     <>
+      <div className="auth__alert-error mb-2">
+        Mensaje de Error
+      </div>
+
       <h3 className="auth__title">Register</h3>
 
       <form onSubmit={ handleRegister }>
