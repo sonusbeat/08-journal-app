@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import validator from "validator";
 import useForm from '../../hooks/useForm';
 import { setError, unsetError } from '../../actions/ui';
+import { startRegisterWithEmailPasswordName } from "../../actions/auth";
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();
   const { msgError } = useSelector(state => state.ui);
 
   const [ formValues, handleInputChange ] = useForm({
-    name: "Daniel",
-    email: "sonusbeat@gmail.com",
+    name: "Alejandro",
+    email: "alex456@gmail.com",
     password: "0123456789",
     password_confirmation: "0123456789",
   });
@@ -56,7 +57,7 @@ const RegisterScreen = () => {
     e.preventDefault();
 
     if ( isFormValid() ) {
-      console.log("Se envia el formulario");
+      dispatch(startRegisterWithEmailPasswordName(email, password, name));
     }
   };
 
