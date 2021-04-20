@@ -1,8 +1,12 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import validator from "validator";
 import useForm from '../../hooks/useForm';
+import { setError, unsetError } from '../../actions/ui';
 
 const RegisterScreen = () => {
+  const dispatch = useDispatch();
+
   const [ formValues, handleInputChange ] = useForm({
     name: "Daniel",
     email: "sonusbeat@gmail.com",
@@ -13,31 +17,36 @@ const RegisterScreen = () => {
   const { name, email, password, password_confirmation } = formValues;
 
   const isFormValid = () => {
-    if ( name.trim().length <= 2) {
-      console.error(`Name should be greater than 2 characters !`);
+    if ( validator.isEmpty( name ) ) {
+      dispatch( setError("Name should be present !") );
+      return false;
+    } else if ( name.trim().length <= 2) {
+      dispatch( setError("Name should be greater than 2 characters !") );
       return false;
     } else if ( validator.isEmpty( email ) ) {
-      console.error(`Email should be present !`);
+      dispatch( setError("Email should be present !") );
       return false;
     } else  if ( !validator.isEmail( email ) ) {
-      console.error(`Email format not valid !`);
+      dispatch( setError("Email format not valid !") );
       return false;
     } else  if ( validator.isEmpty( password ) ) {
-      console.error(`Password should be present !`);
+      dispatch( setError("Password should be present !") );
       return false;
     } else  if ( password.trim().length < 8 ) {
-      console.error(`Password should be greater than 8 characters !`);
+      dispatch( setError("Password should be greater than 8 characters !") );
       return false;
     } else  if ( validator.isEmpty( password_confirmation ) ) {
-      console.error(`Password confirmation should be present !`);
+      dispatch( setError("Password confirmation should be present !") );
       return false;
     } else  if ( password_confirmation.trim().length < 8 ) {
-      console.error(`Password confirmation should be greater than 8 characters !`);
+      dispatch( setError("Password confirmation should be greater than 8 characters !") );
       return false;
     } else  if ( password !== password_confirmation ) {
-      console.error(`Password and Password confirmation should be match each other !`);
+      dispatch( setError("Password and Password confirmation should be match each other !") );
       return false;
     }
+
+    dispatch( unsetError() );
 
     return true;
   };
