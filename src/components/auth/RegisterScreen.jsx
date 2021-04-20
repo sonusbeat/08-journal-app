@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import validator from "validator";
 import useForm from '../../hooks/useForm';
@@ -6,6 +6,7 @@ import { setError, unsetError } from '../../actions/ui';
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();
+  const { msgError } = useSelector(state => state.ui);
 
   const [ formValues, handleInputChange ] = useForm({
     name: "Daniel",
@@ -61,9 +62,14 @@ const RegisterScreen = () => {
 
   return (
     <>
-      <div className="auth__alert-error mb-2">
-        Mensaje de Error
-      </div>
+      {
+        msgError &&
+        (
+          <div className="auth__alert-error mb-2 text-center">
+            { msgError }
+          </div>
+        )
+      }
 
       <h3 className="auth__title">Register</h3>
 
