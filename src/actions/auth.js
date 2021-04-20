@@ -5,11 +5,11 @@ export function startLoginEmailPassword( email, password ) {
 
   return ( dispatch ) => {
 
-    setTimeout( () => {
-
-      dispatch( login(123, "Daniel") );
-
-    }, 3000);
+    firebase.auth().signInWithEmailAndPassword( email, password )
+      .then( ({ user }) => {
+        dispatch( login(user.uid, user.displayName) );
+      })
+      .catch(error => console.log(error));
 
   };
 
