@@ -49,9 +49,31 @@ export function startGoogleLogin() {
   };
 }
 
-export default function login( uid, displayName ) {
+export function login( uid, displayName ) {
   return {
     type: types.login,
     payload: { uid, displayName }
+  };
+}
+
+export function startLogout() {
+  return async ( dispatch ) => {
+    try {
+      // Realiza la des-autenficación en Firebase
+      await firebase.auth().signOut();
+
+      // Una vez des-autentificado por Firebase restablecer el estado inicial
+      // de la autentificación
+      dispatch( logout() );
+
+    } catch( error ) {
+      console.error(error);
+    }
+  };
+}
+
+export function logout() {
+  return {
+    type: types.logout
   };
 }

@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import AuthRouter from "./AuthRouter";
 import JournalScreen from "../components/journal/JournalScreen";
 import firebase from "../firebase/firebase-config";
-import login from "../actions/auth";
+import { login } from "../actions/auth";
 
 const AppRouter = () => {
 
