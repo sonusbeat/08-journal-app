@@ -7,7 +7,7 @@ import validator from "validator";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
-  const { msgError } = useSelector( state => state.ui );
+  const { msgError, loading } = useSelector( state => state.ui );
 
   const [ formValues, handleInputChange ] = useForm({
     email: "alex456@gmail.com",
@@ -85,7 +85,9 @@ const LoginScreen = () => {
         />
 
         <button
+          type="submit"
           className="btn btn-primary btn-block"
+          disabled={ loading }
         >Login</button>
 
         <div className="auth__social-networks">
