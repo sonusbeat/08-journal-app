@@ -1,9 +1,10 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import JournalEntries from './JournalEntries';
 import { startLogout } from '../../actions/auth';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const { name } = useSelector( state => state.auth );
 
   const handleLogout = () => {
     dispatch( startLogout() );
@@ -15,7 +16,7 @@ const Sidebar = () => {
 
         <h2 className="journal__sidebar-title">
           <i className="far fa-user mr-1"></i>
-          <span>Daniel</span>
+          <span>{ name }</span>
         </h2>
 
         <button

@@ -71,6 +71,7 @@ const LoginScreen = () => {
           type="text"
           placeholder="email"
           autoComplete="off"
+          autofill="off"
           onChange={ handleInputChange }
         />
 
@@ -81,6 +82,7 @@ const LoginScreen = () => {
           type="password"
           placeholder="password"
           autoComplete="off"
+          autofill="off"
           onChange={ handleInputChange }
         />
 
