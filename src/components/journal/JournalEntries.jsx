@@ -1,18 +1,19 @@
+import { useSelector } from 'react-redux';
 import JournalEntry from './JournalEntry';
 
 const JournalEntries = () => {
 
-  const entries = [];
+  const { notes } = useSelector(state => state.notes );
 
-  for(let i = 1; i <= 5; i++) {
-    entries.push(i);
-  }
 
   return (
     <div className="journal__sidebar-entries">
       {
-        entries.map( value => (
-          <JournalEntry key={ value } />
+        notes.map( note => (
+          <JournalEntry
+            key={ note.id }
+            { ...note }
+          />
         ))
       }
     </div>
