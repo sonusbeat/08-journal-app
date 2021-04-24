@@ -14,7 +14,7 @@ const types = {
   // Notes
   notesAddNew:         "[Notes] Note Added",
   notesActive:         "[Notes] Note Activated",
-  notesLoad:           "[Notes] Loaded Notes",
+  notesLoad:           "[Notes] Entries Loaded",
   notesUpdated:        "[Notes] Updated note",
   notesFileUrl:        "[Notes] Updated image url",
   notesDelete:         "[Notes] Deleted note",
