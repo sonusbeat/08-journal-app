@@ -8,6 +8,8 @@ import firebase from "../firebase/firebase-config";
 import { login } from "../actions/auth";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from './PublicRoute';
+import { loadNotes } from '../helpers/loadNotes';
+import { setNotes } from '../actions/notes';
 
 const AppRouter = () => {
 
@@ -17,7 +19,7 @@ const AppRouter = () => {
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged( (user) => {
+    firebase.auth().onAuthStateChanged( async (user) => {
 
       // Obtener los datos del usuario si el usuario ha sido autenticado
       if (user?.uid) {
@@ -26,6 +28,9 @@ const AppRouter = () => {
 
         // Ajustar el Logged In en VERDADERO para las rutas privadas y publicas
         setIsLoggedIn( true );
+
+        // Cargar Notas de Firestore
+        dispatch( setNotes( await loadNotes(user.uid) ) );
       } else {
         // Ajustar el Logged In en FALSO SI NO esta autenticado para las rutas privadas y publicas
         setIsLoggedIn( false );
