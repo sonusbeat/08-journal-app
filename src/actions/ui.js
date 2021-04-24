@@ -19,8 +19,7 @@ export function startLoading() {
   };
 }
 
-export function finishLoading() {
-  return {
-    type: types.uiFinishLoading
-  };
-}
+// Nueva Sintaxis ES6
+export const finishLoading = () => ({
+  type: types.uiFinishLoading
+});

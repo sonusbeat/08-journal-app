@@ -69,8 +69,7 @@ export function startLogout() {
       dispatch( logout() );
 
     } catch( error ) {
-      // console.error(error);
-      Swal.fire("Error", error.message, "error")
+      Swal.fire("Error", error.message, "error");
     }
   };
 }

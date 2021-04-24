@@ -10,6 +10,7 @@ const JournalScreen = () => {
 
   return (
     <div className="journal">
+
       <Sidebar />
 
       <main className="journal__main-content">
