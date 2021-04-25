@@ -45,3 +45,19 @@ export const setNotes = ( notes ) => ({
   type: types.notesLoad,
   payload: notes
 });
+
+export const startSaveNote = ( note ) => {
+  return async ( dispatch, getState ) => {
+    const { uid } = getState().auth;
+
+    if ( !note.url ) delete note.url;
+
+    const noteToFirestore = { ...note };
+
+    // Eliminar el id para evitar problemas en firebase
+    delete noteToFirestore.id;
+
+    // Guardar en Firestore
+    db.doc(`${uid}/journal/notes/${ note.id }`).update( noteToFirestore );
+  };
+};

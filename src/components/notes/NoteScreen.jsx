@@ -1,10 +1,13 @@
-import { useSelector } from 'react-redux';
-import NotesAppBar from './NotesAppBar';
-// import landscape from "../../images/landscape.jpg";
-import useForm from '../../hooks/useForm';
 import { useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+// import landscape from "../../images/landscape.jpg";
+
+import NotesAppBar from './NotesAppBar';
+import useForm from '../../hooks/useForm';
+import { activeNote } from '../../actions/notes';
 
 const NoteScreen = () => {
+  const dispatch = useDispatch();
   const { active: note } = useSelector( state => state.notes );
   const [ formValues, handleInputChange, reset ] = useForm( note );
   const { title, body } = formValues;
@@ -17,6 +20,10 @@ const NoteScreen = () => {
       activeId.current = note.id;
     }
   }, [ note, reset ]);
+
+  useEffect(() => {
+    dispatch( activeNote( formValues.id, { ...formValues } ) );
+  }, [ dispatch, formValues ])
 
   return (
     <div className="notes">
@@ -36,7 +43,7 @@ const NoteScreen = () => {
           />
 
           <textarea
-            name=""
+            name="body"
             placeholder="What happend today ?"
             className="notes__textarea"
             value={ body }
