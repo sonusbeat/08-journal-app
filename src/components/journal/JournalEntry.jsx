@@ -1,12 +1,23 @@
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import { activeNote } from "../../actions/notes"
 
 const JournalEntry = (props) => {
-  const { title, body, date, url } = props;
+  const { id, title, body, date, url } = props;
+  const dispatch = useDispatch();
 
+  // Libreria de fechas Moment.js
   const noteDate = moment(date);
 
+  const handleEntryClick = () => {
+    dispatch( activeNote( id, { title, body, date, url } ) );
+  };
+
   return (
-    <div className="journal__sidebar-entry pointer">
+    <div
+      className="journal__sidebar-entry pointer"
+      onClick={ handleEntryClick }
+    >
       {
         ( url )
           ? (
