@@ -20,6 +20,9 @@ export const startNewNote = () => {
 
     // Disparar la acción al reducer
     dispatch(activeNote(doc.id, newNote));
+
+    // Agregar la nota al Redux Store
+    dispatch( addNewNote(doc.id, newNote) );
   };
 };
 
@@ -29,6 +32,11 @@ export const activeNote = (id, note) => {
     payload: { id, ...note },
   };
 };
+
+const addNewNote = ( id, note ) => ({
+  type: types.notesAddNew,
+  payload: { id, ...note },
+});
 
 export const startLoadingNotes = uid => {
   return async dispatch => {
@@ -127,9 +135,9 @@ export const startDeleting = ( noteId ) => {
 
       Swal.fire({
         title: "Note Deleted",
-        icon: 'success',
+        icon: "success",
         showConfirmButton: false,
-        timer: 1300
+        timer: 1300,
       });
 
     } catch (error) {
@@ -142,5 +150,9 @@ export const startDeleting = ( noteId ) => {
 
 export const deleteNote = ( id ) => ({
   type: types.notesDelete,
-  payload: id
+  payload: id,
+});
+
+export const noteLogout = () => ({
+  type: types.notesLogoutCleaning,
 });

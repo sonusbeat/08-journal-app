@@ -2,6 +2,7 @@ import Swal from 'sweetalert2'
 import types from "../types/types";
 import firebase, { googleAuthProvider } from  "../firebase/firebase-config";
 import { finishLoading, startLoading } from './ui';
+import { noteLogout } from './notes';
 
 export function startLoginEmailPassword( email, password ) {
 
@@ -67,6 +68,17 @@ export function startLogout() {
       // Una vez des-autentificado por Firebase restablecer el estado inicial
       // de la autentificación
       dispatch( logout() );
+
+      // Limpiar las notas al salir
+      dispatch( noteLogout() );
+
+      Swal.fire({
+        title: "Logout Successfull",
+        icon: "success",
+        showConfirmButton: false,
+        text: "Comeback Soon !",
+        timer: 2200
+      });
 
     } catch( error ) {
       Swal.fire("Error", error.message, "error");
