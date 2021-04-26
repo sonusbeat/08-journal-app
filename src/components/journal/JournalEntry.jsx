@@ -27,7 +27,7 @@ const JournalEntry = (props) => {
             ></div>
           )
 
-          : ( <div className="journal__sidebar-picture"></div> )
+          : ( <div className="journal__sidebar-svg"></div> )
       }
 
       <div className="journal__sidebar-body">

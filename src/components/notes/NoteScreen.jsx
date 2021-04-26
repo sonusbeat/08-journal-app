@@ -54,7 +54,7 @@ const NoteScreen = () => {
             ( note.url ) &&
             (
               <div className="notes__image">
-                <img src={ note.url } alt="Landscape" />
+                <img src={ note.url } alt={ note.title } />
               </div>
             )
 

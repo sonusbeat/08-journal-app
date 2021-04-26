@@ -56,12 +56,25 @@
       overflow: hidden;
     }
 
+    &-svg,
     &-picture {
-      max-width: 100px;
+      max-width: 150px;
       min-height: 75px;
+    }
+
+    &-svg {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 80%;
+      background-image: url("../../images/image-regular.svg");
+    }
+
+    &-picture {
+      background-repeat: no-repeat;
+      background-position: center center;
       background-size: cover;
-      background-position: bottom left;
-      background-image: url("../../images/beach.jpg");
+      background-image: url("../../images/image-regular.svg");
     }
 
     &-body {
