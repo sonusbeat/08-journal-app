@@ -97,6 +97,7 @@ export const startUploading = ( file ) => {
       },
     });
 
+    // Subir la imagen a Cloudinary
     const fileUrl = await fileUpload( file );
 
     dispatch(
@@ -109,4 +110,37 @@ export const startUploading = ( file ) => {
     Swal.close();
 
   };
-}
+};
+
+export const startDeleting = ( noteId ) => {
+
+  return async ( dispatch, getState ) => {
+
+    const uid = getState().auth.uid;
+
+    try {
+      // Delete from Firestore
+      await db.doc(`${ uid }/journal/notes/${ noteId }`).delete();
+
+      // Delete from Redux Store
+      dispatch( deleteNote( noteId ) );
+
+      Swal.fire({
+        title: "Note Deleted",
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1300
+      });
+
+    } catch (error) {
+      throw error;
+    }
+
+  };
+
+};
+
+export const deleteNote = ( id ) => ({
+  type: types.notesDelete,
+  payload: id
+});

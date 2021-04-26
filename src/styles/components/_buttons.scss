@@ -32,6 +32,28 @@
     }
   }
 
+  &-danger {
+    background: $danger;
+    color: $white;
+    border-radius: 2px;
+
+    transition: background-color 300ms ease-in-out,
+                color 300ms ease-in-out;
+
+    &:disabled {
+      background-color: lighten($danger, 15);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background-color: darken($danger, 20);
+      color: darken($white, 10);
+    }
+  }
+
   &-block {
     width: 100%;
   }
