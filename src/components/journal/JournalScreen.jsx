@@ -9,7 +9,7 @@ const JournalScreen = () => {
   const { active } = useSelector(state => state.notes );
 
   return (
-    <div className="journal">
+    <div className="journal animate__animated animate__fadeIn animate__faster">
 
       <Sidebar />
 

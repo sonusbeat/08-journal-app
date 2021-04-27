@@ -15,7 +15,7 @@ const JournalEntry = (props) => {
 
   return (
     <div
-      className="journal__sidebar-entry pointer"
+      className="journal__sidebar-entry pointer animate__animated animate__fadeIn animate__faster"
       onClick={ handleEntryClick }
     >
       {
