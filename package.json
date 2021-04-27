@@ -1,6 +1,6 @@
 {
   "name": "08-journal-app",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "animate.css": "^4.1.1",
+    "cloudinary": "^1.25.1",
     "firebase": "^8.4.1",
     "moment": "^2.29.1",
     "node-sass": "^5.0.0",

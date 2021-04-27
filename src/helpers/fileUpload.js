@@ -24,7 +24,7 @@ export const fileUpload = async ( file ) => {
 
     } else {
 
-      throw await response.json();
+      return null;
 
     }
 
