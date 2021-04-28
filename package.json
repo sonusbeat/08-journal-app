@@ -1,6 +1,6 @@
 {
   "name": "08-journal-app",
-  "version": "4.3.0",
+  "version": "4.4.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
@@ -50,6 +50,7 @@
   "devDependencies": {
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.1",
     "enzyme": "^3.11.0",
-    "enzyme-to-json": "^3.6.2"
+    "enzyme-to-json": "^3.6.2",
+    "redux-mock-store": "^1.5.4"
   }
 }
