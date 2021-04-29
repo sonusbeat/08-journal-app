@@ -38,11 +38,11 @@ const addNewNote = ( id, note ) => ({
   payload: { id, ...note },
 });
 
-export const startLoadingNotes = uid => {
+export const startLoadingNotes = (uid) => {
   return async dispatch => {
     const notes = await loadNotes(uid);
 
-    dispatch(setNotes(notes));
+    dispatch( setNotes(notes) );
   };
 };
 
