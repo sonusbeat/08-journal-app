@@ -15,14 +15,19 @@ export const startNewNote = () => {
       date: new Date().getTime(),
     };
 
-    // Guardar la nota en Firestore
-    const doc = await db.collection(`${uid}/journal/notes`).add(newNote);
+    try {
+      // Guardar la nota en Firestore
+      const doc = await db.collection(`${uid}/journal/notes`).add(newNote);
 
-    // Disparar la acción al reducer
-    dispatch(activeNote(doc.id, newNote));
+      // Disparar la acción al reducer
+      dispatch(activeNote(doc.id, newNote));
 
-    // Agregar la nota al Redux Store
-    dispatch( addNewNote(doc.id, newNote) );
+      // Agregar la nota al Redux Store
+      dispatch( addNewNote(doc.id, newNote) );
+    } catch(error) {
+      console.log(error);
+    }
+
   };
 };
 

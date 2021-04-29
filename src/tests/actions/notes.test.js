@@ -1,4 +1,4 @@
- /**
+/**
  * @jest-environment node
  */
 
@@ -6,7 +6,26 @@ import configureStore from "redux-mock-store";
 import thunk from "redux-thunk"
 import { db } from "../../firebase/firebase-config";
 import types from "../../types/types";
-import { startNewNote, startLoadingNotes, startSaveNote } from '../../actions/notes';
+import {
+  startNewNote,
+  startLoadingNotes,
+  startSaveNote,
+  startUploading,
+} from '../../actions/notes';
+
+jest.mock("../../helpers/fileUpload", () => ({
+  // fileUpload: jest.fn( () => {
+  //   // Retornando el String
+  //   // return "https://midominio.com/image.jpg"
+
+  //   // Retornando una Promesa
+  //   return Promise.resolve("https://midominio.com/image.jpg");
+  // }),
+
+  fileUpload: () => {
+    return Promise.resolve("https://midominio.com/image.jpg");
+  }
+}));
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -15,12 +34,18 @@ const initialState = {
   auth: {
     uid: "TESTING",
   },
+  notes: {
+    active: {
+      id: "YOoOF6L2aDmmc67mE93H",
+      title: "Boku no hero academia",
+      body: "Lorem ipsum dolor dolem",
+    }
+  }
 };
 
 let store = mockStore( initialState );
 
 describe("Pruebas con las acciones de notes", () => {
-
   beforeEach(() => store = mockStore( initialState ));
 
   test("Deberia de crear una nueva nota startNewNote", async () => {
@@ -105,6 +130,30 @@ describe("Pruebas con las acciones de notes", () => {
     //    coincida con body de la nota
     expect( docRef.data().body ).toEqual( note.body );
 
+  });
+
+  test('Debería actualizar el url de la nota con la acción startUploading', async () => {
+    // Primer alternativa pero falló
+    // const file = new File([], "image.jpg");
+
+    // 1. Se envia un arreglo vacio
+    const file = [];
+
+    // 2. Se dispara la acción la imagen creada
+    await store.dispatch( startUploading( file ) );
+
+    // 3. Se obtiene el uid del mock del store
+    const uid = store.getState().auth.uid;
+
+    // 4. Se obtiene el noteId del initialState
+    const noteId = initialState.notes.active.id;
+
+    // 5. Se obtiene la referencia del documento
+    const docRef = await db.doc(`/${ uid }/journal/notes/${ noteId }`).get();
+
+    // 6. Se compara el url de la referencia con el mismo url que se definio
+    // en el jest mock de arriba
+    expect( docRef.data().url ).toBe("https://midominio.com/image.jpg");
   });
 
 });
