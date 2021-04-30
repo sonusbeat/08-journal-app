@@ -10,7 +10,7 @@ export function startLoginEmailPassword( email, password ) {
 
     dispatch( startLoading() );
 
-    firebase.auth().signInWithEmailAndPassword( email, password )
+    return firebase.auth().signInWithEmailAndPassword( email, password )
       .then( ({ user }) => {
         // Inicializa el login
         dispatch( login(user.uid, user.displayName) );
