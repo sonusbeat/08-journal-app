@@ -1,6 +1,5 @@
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import { db } from "../../firebase/firebase-config";
 
 import {
   login,
