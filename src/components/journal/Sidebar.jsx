@@ -26,6 +26,7 @@ const Sidebar = () => {
         </h2>
 
         <button
+          id="logoutBtn"
           type="button"
           className="btn btn-primary"
           onClick={ handleLogout }
@@ -34,6 +35,7 @@ const Sidebar = () => {
       </div>
 
       <div
+        id="newEntryBtn"
         className="journal__sidebar-new-entry"
         onClick={ HandleAddNew }
       >
