@@ -5,10 +5,10 @@ import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
-import LoginScreen from "../../../components/auth/LoginScreen";
-import { startGoogleLogin, startLoginEmailPassword } from "../../../actions/auth";
+import LoginScreen from '../../../../components/auth/LoginScreen';
+import { startGoogleLogin, startLoginEmailPassword } from "../../../../actions/auth";
 
-jest.mock("../../../actions/auth", function() {
+jest.mock("../../../../actions/auth", function() {
   return {
     // Simular llamar la acción de startGoogleLogin con jest.fn()
     startGoogleLogin: jest.fn(),
@@ -18,8 +18,8 @@ jest.mock("../../../actions/auth", function() {
   };
 });
 
-const middlewares = [thunk];
-const mockStore = configureStore(middlewares);
+const middlewares = [ thunk ];
+const mockStore = configureStore( middlewares );
 
 // Estado inicial del State de Redux
 const initialState = {
